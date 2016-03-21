@@ -5,13 +5,13 @@ package org.adani.spring.examples.di.basic;
  */
 public class ConstructorDIExample {
 
-    private final String injectedValue;
+    private final Object injectedValue;
 
-    public ConstructorDIExample(String someInjectedValue) {
+    public ConstructorDIExample(Object someInjectedValue) {
         this.injectedValue = someInjectedValue;
     }
 
-    public String getInjectedValue() {
+    public Object getInjectedValue() {
         return injectedValue;
     }
 }
