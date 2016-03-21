@@ -14,4 +14,8 @@
         <constructor-arg value="${injectedValue}"/>
     </bean>
 
+    <bean id="propertyDIExample" class="org.adani.spring.examples.di.basic.PropertyDIExample">
+        <property name="injectedValue" value="${injectedValue}"/>
+    </bean>
+
 </beans>

@@ -1,5 +1,8 @@
 package org.adani.spring.examples.di.basic;
 
+/**
+ * Inject a dependency through the constructor
+ */
 public class ConstructorDIExample {
 
     private final String injectedValue;
