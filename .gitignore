@@ -63,7 +63,7 @@ crashlytics-build.properties
 fabric.properties
 
 ### Intellij Patch ###
-*.iml
+## *.iml  ## OTHERWISE WILL HAVE ISSUES WITH VERSION CONTROL
 
 
 ### Eclipse ###
