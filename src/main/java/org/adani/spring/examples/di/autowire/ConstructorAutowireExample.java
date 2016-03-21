@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class ConstructorAutowireExample {
 
+
     private final String injectedValue;
 
     @Autowired
