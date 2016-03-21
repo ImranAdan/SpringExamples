@@ -8,7 +8,6 @@
         <property name="location" value="classpath:IOC_DI/app.properties"/>
     </bean>
 
-
     <!-- Configuration around IOC and dependency Injection -->
     <bean id="constructorDIExample" class="org.adani.spring.examples.di.basic.ConstructorDIExample">
         <constructor-arg value="${injectedValue}"/>
@@ -16,6 +15,20 @@
 
     <bean id="propertyDIExample" class="org.adani.spring.examples.di.basic.PropertyDIExample">
         <property name="injectedValue" value="${injectedValue}"/>
+    </bean>
+
+
+    <!-- Bean with Some Value -->
+    <bean id="injectedValue" class="java.lang.String">
+        <constructor-arg value="${injectedValue}"/>
+    </bean>
+
+    <bean id="constructorAutowireExample" class="org.adani.spring.examples.di.autowire.ConstructorAutowireExample">
+        <constructor-arg ref="injectedValue"/>
+    </bean>
+
+    <bean id="propertyAutowireExample" class="org.adani.spring.examples.di.autowire.PropertyAutowireExample">
+        <property name="injectedValue" ref="injectedValue"/>
     </bean>
 
 </beans>

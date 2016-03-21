@@ -23,7 +23,7 @@ public class ConstructorDIExampleTest implements ApplicationContextAware {
 
     @Test
     public void testGetInjectedValue() throws Exception {
-        String expected = "HELLO WORLD";
-        assertThat(constructorDIExample.getInjectedValue(), is(expected));
+        String value = constructorDIExample.getInjectedValue().toString();
+        assertThat(value, is("HELLO WORLD"));
     }
 }
