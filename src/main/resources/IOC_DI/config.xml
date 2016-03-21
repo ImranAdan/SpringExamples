@@ -19,16 +19,16 @@
 
 
     <!-- Bean with Some Value -->
-    <bean id="injectedValue" class="java.lang.String">
+    <bean id="helloWorld" class="java.lang.String">
         <constructor-arg value="${injectedValue}"/>
     </bean>
 
     <bean id="constructorAutowireExample" class="org.adani.spring.examples.di.autowire.ConstructorAutowireExample">
-        <constructor-arg ref="injectedValue"/>
+        <constructor-arg ref="helloWorld"/>
     </bean>
 
     <bean id="propertyAutowireExample" class="org.adani.spring.examples.di.autowire.PropertyAutowireExample">
-        <property name="injectedValue" ref="injectedValue"/>
+        <property name="injectedValue" ref="helloWorld"/>
     </bean>
 
 </beans>
