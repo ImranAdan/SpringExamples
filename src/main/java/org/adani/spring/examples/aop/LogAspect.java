@@ -1,11 +1,7 @@
 package org.adani.spring.examples.aop;
 
-
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,42 +10,38 @@ public class LogAspect {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LogAspect.class);
 
-
-    // TODO: Probably better if you use xml file with expressions than using annotations!
-
-    @Before("execution(* org.adani.spring.examples..*Endpoint.*(..))")
-    public void logActionEntry(JoinPoint jp) {
-        String actionArgs = "ARGS [";
-        for (Object obj : jp.getArgs()) {
-            actionArgs += obj.toString();
-        }
-        actionArgs += "]";
-        String actionMessage = "ACTION [ " + jp.getSignature().getDeclaringTypeName() + "::" + jp.getSignature().getName() + actionArgs + "]";
+    @Before("execution(* org.adani.spring.examples.aop.*.*(..)) && within(org.adani.spring.examples.aop.*)")
+    public void onEntry(JoinPoint jp) {
+        String args = getJointPointArgs(jp);
+        String actionMessage = "ACTION ~> [ " + jp.getSignature().getDeclaringTypeName() + "::" + jp.getSignature().getName() +"(..) -> " + args + "]";
         LOGGER.info(actionMessage);
     }
 
-    @After("execution(* org.adani.spring.examples..*Endpoint.*(..))")
-    public void logActionExit(JoinPoint jp) {
-        String actionArgs = "ARGS [";
-        for (Object obj : jp.getArgs()) {
-            actionArgs += obj.toString();
-        }
-        actionArgs += "]";
-        String actionMessage = "ACTION [ " + jp.getSignature().getDeclaringTypeName() + "::" + jp.getSignature().getName() + actionArgs + "]";
+    @After("execution(* org.adani.spring.examples.aop.*.*(..)) && within(org.adani.spring.examples.aop.*)")
+    public void onExit(JoinPoint jp) {
+        String args = getJointPointArgs(jp);
+        String actionMessage = "ACTION ~> [ " + jp.getSignature().getDeclaringTypeName() + "::" + jp.getSignature().getName() +"(..) -> " + args + "]";
         LOGGER.info(actionMessage);
     }
 
-    @AfterThrowing(pointcut = "execution(* org.adani.spring.examples..*Endpoint.*(..))", throwing = "ex")
-    public void logActionFault(JoinPoint jp, Throwable ex) {
+    @AfterThrowing(pointcut = "execution(* org.adani.spring.examples.aop.*.*(..)) && within(org.adani.spring.examples.aop.*)", throwing = "ex")
+    public void onExceptionThrown(JoinPoint jp, Throwable ex) {
         String fault = "EXCEPTION [ " + ex.getMessage() + " ]";
-        String actionArgs = "ARGS [";
-        for (Object obj : jp.getArgs()) {
-            actionArgs += obj.toString();
-        }
-        actionArgs += " ] ";
-        String actionMessage = fault + "\nACTION [ " + jp.getSignature().getDeclaringTypeName() + "::" + jp.getSignature().getName() + actionArgs + " ] ";
+        LOGGER.info(fault);
+        String args = getJointPointArgs(jp);
+        String actionMessage = "ACTION ~> [ " + jp.getSignature().getDeclaringTypeName() + "::" + jp.getSignature().getName() +"(..) ~> " + args + "\n"+fault+"]";
         LOGGER.info(actionMessage);
     }
 
-
+    private String getJointPointArgs(JoinPoint jp) {
+        String actionArgs = "ARGS: [";
+        for (int i = 0; i < jp.getArgs().length; ++i) {
+            if (i == jp.getArgs().length - 1)
+                actionArgs += jp.getArgs()[i].toString();
+            else
+                actionArgs += jp.getArgs()[i].toString() + ",";
+        }
+        actionArgs += "]";
+        return actionArgs;
+    }
 }

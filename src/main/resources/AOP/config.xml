@@ -9,6 +9,8 @@
     </bean>
 
 
+    <bean id="actionPerformer" class="org.adani.spring.examples.aop.ActionPerformer"/>
+
     <bean id="aopHelloWorld" class="java.lang.String">
         <constructor-arg value="${injectedValue}"/>
     </bean>
@@ -17,5 +19,8 @@
     <!-- Aspect J Proxy with Logging Aspect -->
     <aop:aspectj-autoproxy/>
     <bean id="logAspect" class="org.adani.spring.examples.aop.LogAspect"/>
+
+
+
 
 </beans>
