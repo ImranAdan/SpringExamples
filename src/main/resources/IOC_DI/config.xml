@@ -1,0 +1,17 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!-- Property Place Holders -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:IOC_DI/app.properties"/>
+    </bean>
+
+
+    <!-- Configuration around IOC and dependency Injection -->
+    <bean id="constructorDIExample" class="org.adani.spring.examples.di.basic.ConstructorDIExample">
+        <constructor-arg value="${injectedValue}"/>
+    </bean>
+
+</beans>
