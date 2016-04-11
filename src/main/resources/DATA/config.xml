@@ -5,16 +5,11 @@
 
     <!-- Property Place Holders -->
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:AOP/app.properties"/>
+        <property name="location" value="classpath:DATA/app.properties"/>
     </bean>
 
 
-    <bean id="actionPerformer" class="org.adani.spring.examples.aop.ActionPerformer"/>
-
-    <bean id="aopHelloWorld" class="java.lang.String">
-        <constructor-arg value="${injectedValue}"/>
-    </bean>
-
+    <!-- DEFINE BEANS HERE -->
 
     <!-- Aspect J Proxy with Logging Aspect -->
     <aop:aspectj-autoproxy/>

@@ -1,23 +1,18 @@
 package org.adani.spring.examples.aop;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- */
 @Aspect
 public class LogAspect {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LogAspect.class);
 
-    /**
-     *
-     * TODO: Complete Documentation
-     * @param jp
-     */
     @Before("execution(* org.adani.spring.examples.aop.*.*(..)) && within(org.adani.spring.examples.aop.*)")
     public void onEntry(JoinPoint jp) {
         String args = getJointPointArgs(jp);
@@ -25,10 +20,6 @@ public class LogAspect {
         LOGGER.info(actionMessage);
     }
 
-    /**
-     * TODO: Complete Documentation
-     * @param jp
-     */
     @After("execution(* org.adani.spring.examples.aop.*.*(..)) && within(org.adani.spring.examples.aop.*)")
     public void onExit(JoinPoint jp) {
         String args = getJointPointArgs(jp);
@@ -36,11 +27,6 @@ public class LogAspect {
         LOGGER.info(actionMessage);
     }
 
-    /**
-     * TODO: Complete Documentation
-     * @param jp
-     * @param ex
-     */
     @AfterThrowing(pointcut = "execution(* org.adani.spring.examples.aop.*.*(..)) && within(org.adani.spring.examples.aop.*)", throwing = "ex")
     public void onExceptionThrown(JoinPoint jp, Throwable ex) {
         String fault = "EXCEPTION [ " + ex.getMessage() + " ]";
@@ -50,11 +36,6 @@ public class LogAspect {
         LOGGER.info(actionMessage);
     }
 
-    /**
-     * TODO: Complete Documentation
-     * @param jp
-     * @return
-     */
     private String getJointPointArgs(JoinPoint jp) {
         String actionArgs = "ARGS: [";
         for (int i = 0; i < jp.getArgs().length; ++i) {

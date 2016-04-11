@@ -4,7 +4,6 @@ Implementation of Several Concepts in Spring Framework:
 
   - IOC and Dependency Injection
   - AOP
-  - Web & Security
   - Data
   - Testing 
 
