@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module type="JAVA_MODULE" version="4">
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration process_explicitly_annotated="false">
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/master-config.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/AOP/config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/DATA/config.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -39,5 +40,6 @@
     <orderEntry type="library" name="Maven: cglib:cglib:2.2" level="project" />
     <orderEntry type="library" name="Maven: asm:asm:3.1" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.6.11" level="project" />
+    <orderEntry type="library" name="Maven: com.h2database:h2:1.4.191" level="project" />
   </component>
 </module>

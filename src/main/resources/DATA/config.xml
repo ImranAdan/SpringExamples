@@ -1,18 +1,12 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:aop="http://www.springframework.org/schema/aop" xmlns="http://www.springframework.org/schema/beans"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-    <!-- Property Place Holders -->
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:DATA/app.properties"/>
-    </bean>
+    <!-- IMPORT DATABASE BEANS -->
 
+    <import resource="classpath:DATA/database.xml"/>
 
-    <!-- DEFINE BEANS HERE -->
-
-    <!-- Aspect J Proxy with Logging Aspect -->
-    <aop:aspectj-autoproxy/>
-    <bean id="logAspect" class="org.adani.spring.examples.aop.LogAspect"/>
-
+    <!-- Bean for our DAO -->
+    <bean id="productDAO" class="org.adani.spring.examples.data.templates.binding.ProductDAOImpl" autowire="byName"/>
 </beans>
